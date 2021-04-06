@@ -1,0 +1,375 @@
+﻿<style>
+
+    body {
+        background-color: crimson;
+    }
+    .star {
+        color: goldenrod;
+        font-size: 2.0rem;
+        padding: 0 1rem; /* space out the stars */
+    }
+
+        .star::before {
+            content: '\2606'; /* star outline */
+            cursor: pointer;
+        }
+
+        .star.rated::before {
+            /* the style for a selected star */
+            content: '\2605'; /* filled star */
+        }
+
+    .stars {
+        counter-reset: rateme 0;
+        font-size: 2.0rem;
+        font-weight: 900;
+    }
+
+    .star.rated {
+        counter-increment: rateme 1;
+    }
+
+    .stars::after {
+        content: counter(rateme) '/5';
+    }
+
+    .form-popup {
+        width: auto;
+        height: auto;
+        top: 0;
+        padding: 20px;
+        display: none;
+        position: absolute;
+        align-items: center;
+        text-align: center;
+        margin: auto;
+        background-color: floralwhite;
+        border-color: black;
+        border-width: medium;
+    }
+
+    .emp-profile {
+        padding: 3%;
+        margin-top: 3%;
+        margin-bottom: 3%;
+        border-radius: 0.5rem;
+        background: #fff;
+    }
+
+    .profile-img {
+        text-align: center;
+    }
+
+        .profile-img img {
+            width: 70%;
+            height: 100%;
+        }
+
+        .profile-img .file {
+            position: relative;
+            overflow: hidden;
+            margin-top: -20%;
+            width: 70%;
+            border: none;
+            border-radius: 0;
+            font-size: 15px;
+            background: #212529b8;
+        }
+
+            .profile-img .file input {
+                position: absolute;
+                opacity: 0;
+                right: 0;
+                top: 0;
+            }
+
+    .profile-head h5 {
+        color: #333;
+    }
+
+    .profile-head h6 {
+        color: #DC143C;
+    }
+
+    .profile-edit-btn {
+        border: none;
+        border-radius: 1.5rem;
+        width: 70%;
+        padding: 2%;
+        font-weight: 600;
+        color: #6c757d;
+        cursor: pointer;
+    }
+
+    .proile-rating {
+        font-size: 12px;
+        color: #818182;
+        margin-top: 5%;
+    }
+
+        .proile-rating span {
+            color: #495057;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+    .profile-head .nav-tabs {
+        margin-bottom: 5%;
+    }
+
+        .profile-head .nav-tabs .nav-link {
+            font-weight: 600;
+            border: none;
+        }
+
+            .profile-head .nav-tabs .nav-link.active {
+                border: none;
+                border-bottom: 2px solid #DC143C;
+            }
+
+    .profile-work {
+        padding: 14%;
+        margin-top: -15%;
+    }
+
+        .profile-work p {
+            font-size: 12px;
+            color: #818182;
+            font-weight: 600;
+            margin-top: 10%;
+        }
+
+        .profile-work a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .profile-work ul {
+            list-style: none;
+        }
+
+    .profile-tab label {
+        font-weight: 600;
+    }
+
+    .profile-tab p {
+        font-weight: 600;
+        color: crimson;
+</style>
+}@{
+    ViewBag.Title = "GotoProfile";
+    Layout = "~/Views/Shared/UsersLayout.cshtml";
+}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<div class="container emp-profile">
+
+    <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    <img src="~/market-starter_Free12-02-2020_745516375/market-starter/assets/images/Adsıztasarım.jpg" alt="" />
+                    <div class="file btn btn-lg btn-primary">
+                        Change Photo
+                        <input type="file" name="file" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="profile-head">
+                    <h5>
+                        Şerife Benli
+                    </h5>
+                    <h6>
+                        serifebenlii
+                    </h6>
+
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" style="color:gray;" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Hakkında</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color:gray;" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Galeri</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Profil Düzenle" formaction="http://localhost:62500/Default/Profile" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-work">
+                    <p>AKTİVİTE</p>
+                    <a href="">Favorileri Gör</a><br />
+                    <a href="">Ortalama Puan</a><br />
+                    <a href="">Mesaj Gönder</a><br />
+                    <br />
+
+                    <button type="button" class="btn btn-danger" onclick="openFormFavorite()"><i class="fa fa-heart-o style="color:white;"></i> Favorilere Ekle</button><br /><br />
+                    <button type="button" class="btn btn-secondary" onclick="openFormRating()"><i class="fa fa-star style="color:white;"></i>  Puanlama Yap</button><br /><br />
+                    <button type="button" class="btn btn-info" onclick="openFormComment()"><i class="fa fa-pencil-square-o style="color:white;"></i>  Yorum Yap</button>
+                    <div class="form-popup" id="comment">
+                        <form action="/action_page.php" class="form-container">
+                            <label for="exampleFormControlTextarea1">Yorum Yap</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+
+                            <button type="submit" class="btn">Yorum Yap</button>
+                            <button type="button" class="btn cancel" onclick="closeFormComment()">Kapat</button>
+                        </form>
+                    </div>
+                    <div class="form-popup" id="rate">
+                        <form action="/action_page.php" class="form-container">
+
+                            <div class="stars" data-rating="1">
+                                <span class="star">&nbsp;</span>
+                                <span class="star">&nbsp;</span>
+                                <span class="star">&nbsp;</span>
+                                <span class="star">&nbsp;</span>
+                                <span class="star">&nbsp;</span>
+                            </div>
+
+                            <button type="button" class="close" onclick="closeFormRating()" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="form-popup" id="favorite">
+                        <form action="/action_page.php" class="form-container">
+                            <div style="color: crimson;">
+                               favorilere eklendi
+                            </div>
+                            <button type="button" class="close" onclick="closeFormFavorite()" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            
+                        </form>
+                    </div>
+
+
+                </div>
+                </div>
+            <div class="col-md-8">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Kullanıcı Adı</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>serifebenlii</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>İsim</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Şerife</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Mail</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>serifebenli@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Şehir</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Ankara</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Biyografi</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>3 yıldır pastacılık alanında uğraşıyorum.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <picture>
+                            <img src="~/market-starter_Free12-02-2020_745516375/market-starter/assets/images/Adsıztasarım.jpg" class="img-fluid img-thumbnail" width="100" height="100" alt="...">
+                        </picture>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+<script>
+    function openFormFavorite() {
+        document.getElementById("favorite").style.display = "block";
+    }
+
+    function closeFormFavorite() {
+        document.getElementById("favorite").style.display = "none";
+    }
+
+    function openFormComment() {
+        document.getElementById("comment").style.display = "block";
+    }
+
+    function closeFormComment() {
+        document.getElementById("comment").style.display = "none";
+    }
+
+    function openFormRating() {
+        document.getElementById("rate").style.display = "block";
+    }
+
+    function closeFormRating() {
+        document.getElementById("rate").style.display = "none";
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        let stars = document.querySelectorAll('.star');
+        stars.forEach(function (star) {
+            star.addEventListener('click', setRating);
+        });
+
+        let rating = parseInt(document.querySelector('.stars').getAttribute('data-rating'));
+        let target = stars[rating - 1];
+        target.dispatchEvent(new MouseEvent('click'));
+    });
+
+    function setRating(ev) {
+        let span = ev.currentTarget;
+        let stars = document.querySelectorAll('.star');
+        let match = false;
+        let num = 0;
+        stars.forEach(function (star, index) {
+            if (match) {
+                star.classList.remove('rated');
+            } else {
+                star.classList.add('rated');
+            }
+            //are we currently looking at the span that was clicked
+            if (star === span) {
+                match = true;
+                num = index + 1;
+            }
+        });
+        document.querySelector('.stars').setAttribute('data-rating', num);
+    }
+
+</script>
+

@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+}
+
+
+<meta charset="utf-8" />
+<title></title>
+<!-- meta tags -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="keywords" content="Art Sign Up Form Responsive Widget, Audio and Video players, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates,
+		Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design" />
+<!-- /meta tags -->
+<!-- custom style sheet -->
+<link href="~/market-starter_Free12-02-2020_745516375/market-starter/assets/css/style.css" rel="stylesheet" type="text/css" />
+<!-- /custom style sheet -->
+<!-- fontawesome css -->
+<link href="~/market-starter_Free12-02-2020_745516375/market-starter/assets/css/fontawesome-all.css" rel="stylesheet" />
+<!-- /fontawesome css -->
+<!-- google fonts-->
+<link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet">
+<!-- /google fonts-->
+
+
+<div>
+    Boşluk &nbsp&nbsp&nbsp Bırakma
+</div>
+
+
+
+<div class=" w3l-login-form">
+    <div class=" w3l-form-group">
+        <label>Kullanıcı Adı:</label>
+        <div class="group">
+            <i class="fas fa-user"></i>
+            <input type="text" class="form-control" placeholder="kullanıcı" required="required" />
+        </div>
+    </div>
+    <div class=" w3l-form-group">
+        <label>Şifre:</label>
+        <div class="group">
+            <i class="fas fa-unlock"></i>
+            <input type="password" class="form-control" placeholder="şifre" required="required" />
+        </div>
+    </div>
+    <div class=" w3l-form-group">
+        <label>Mail</label>
+        <div class="group">
+            <i class="fas fa-unlock"></i>
+            <input type="text" class="form-control" placeholder="mail" required="required" />
+        </div>
+    </div>
+    <div class=" w3l-form-group">
+        <label>Adres</label>
+        <div class="group">
+            <i class="fas fa-unlock"></i>
+            <input type="text" class="form-control" placeholder="adres" required="required" />
+        </div>
+    </div>
+   
+    <button type="submit">Kayıt Ol</button>
+</div>
+
+<div id="guncelSonuclar" style="border:1px solid silver;padding:20px;"></div>
+
+
+
+<script>
+
+
+    var sonucAlani = document.getElementById("guncelSonuclar");
+    var izleyici = null;
+    if (navigator.geolocation) {
+
+        ayarlar = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0
+        };
+
+        izleyici = navigator.geolocation.watchPosition(olumlu, olumsuz, ayarlar);
+
+
+    } else {
+        sonucAlani.innerHTML = "Konum Destegi Yok :(";
+    }
+
+
+    function olumlu(konum) {
+        sonucAlani.innerHTML = "latitude=" + konum.coords.latitude + "<br/>longitude=" + konum.coords.longitude;
+    }
+
+    function olumsuz(hata) {
+        sonucAlani.innerHTML = "Hata oldu ve Hata Kodu=" + hata.code;
+    }
+</script>
+
+
